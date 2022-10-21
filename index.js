@@ -1,44 +1,208 @@
 let arrayOfQuestions = [
-    {
+	{
 		question: "Fråga 1:",
-		answer: "false",
+		alternatives: [
+			{
+				answer: "true",
+				correct: true,
+			},
+			{
+				answer: "false",
+				correct: false,
+			},
+		],
+		type: "radiobutton",
 	},
 	{
-		question: "Jorden är 20 år gammal.",
-		answer: "true",
-	},
-    {
-		question: "Fråga 3:",
-		answer: "false",
-	},
-    {
-		question: "Fråga 4:",
-		answer: "false",
-	},
-	{
-		question: "Fråga 5:",
-		answer: "true",
-	},
-    {
-		question: "Fråga 6:",
-		answer: "false",
-	},
-    {
-		question: "Fråga 7:",
-		answer: "false",
+		question: "Jorden är 20 år gammal",
+		alternatives: [
+			{
+				answer: "true",
+				correct: true,
+			},
+			{
+				answer: "false",
+				correct: false,
+			},
+		],
+		type: "radiobutton",
 	},
 	{
 		question: "Fråga 8:",
-		answer: "true",
+		alternatives: [
+			{
+				answer: "8aaa",
+				correct: true,
+			},
+			{
+				answer: "8bbb",
+				correct: false,
+			},
+			{
+				answer: "8ccc",
+				correct: false,
+			},
+			{
+				answer: "8ddd",
+				correct: false,
+			},
+		],
+		type: "radiobutton",
 	},
-    {
+	{
 		question: "Fråga 9:",
-		answer: "false",
+		alternatives: [
+			{
+				answer: "9aaa",
+				correct: false,
+			},
+			{
+				answer: "9bbb",
+				correct: true,
+			},
+			{
+				answer: "9ccc",
+				correct: false,
+			},
+			{
+				answer: "9ddd",
+				correct: false,
+			},
+		],
+		type: "radiobutton",
 	},
-    {
+	{
 		question: "Fråga 10:",
-		answer: "false",
+		alternatives: [
+			{
+				answer: "10aaa",
+				correct: false,
+			},
+			{
+				answer: "10bbb",
+				correct: false,
+			},
+			{
+				answer: "10ccc",
+				correct: true,
+			},
+			{
+				answer: "10ddd",
+				correct: false,
+			},
+		],
+		type: "radiobutton",
 	},
+	{
+		question: "Fråga 11:",
+		alternatives: [
+			{
+				answer: "11aaa",
+				correct: false,
+			},
+			{
+				answer: "11bbb",
+				correct: false,
+			},
+			{
+				answer: "11ccc",
+				correct: true,
+			},
+			{
+				answer: "11ddd",
+				correct: false,
+			},
+		],
+		type: "radiobutton",
+	},
+	{
+		question: "Fråga 12:",
+		alternatives: [
+			{
+				answer: "12aaa",
+				correct: true,
+			},
+			{
+				answer: "12bbb",
+				correct: false,
+			},
+			{
+				answer: "12ccc",
+				correct: true,
+			},
+			{
+				answer: "12ddd",
+				correct: false,
+			},
+		],
+		type: "checkboxes",
+	},
+	// {
+	// 	question: "Fråga 13:",
+	// 	alternatives: [
+	// 		{
+	// 			answer: "13aaa",
+	// 			correct: true,
+	// 		},
+	// 		{
+	// 			answer: "13bbb",
+	// 			correct: true,
+	// 		},
+	// 		{
+	// 			answer: "13ccc",
+	// 			correct: true,
+	// 		},
+	// 		{
+	// 			answer: "13ddd",
+	// 			correct: false,
+	// 		},
+	// 	],
+	// 	type: "checkboxes",
+	// },
+	// {
+	// 	question: "Fråga 14:",
+	// 	alternatives: [
+	// 		{
+	// 			answer: "14aaa",
+	// 			correct: false,
+	// 		},
+	// 		{
+	// 			answer: "14bbb",
+	// 			correct: true,
+	// 		},
+	// 		{
+	// 			answer: "14ccc",
+	// 			correct: false,
+	// 		},
+	// 		{
+	// 			answer: "14ddd",
+	// 			correct: false,
+	// 		},
+	// 	],
+	// 	type: "checkboxes",
+	// },
+	// {
+	// 	question: "Fråga 15:",
+	// 	alternatives: [
+	// 		{
+	// 			answer: "15aaa",
+	// 			correct: true,
+	// 		},
+	// 		{
+	// 			answer: "15bbb",
+	// 			correct: false,
+	// 		},
+	// 		{
+	// 			answer: "15ccc",
+	// 			correct: true,
+	// 		},
+	// 		{
+	// 			answer: "15ddd",
+	// 			correct: false,
+	// 		},
+	// 	],
+	// 	type: "checkboxes",
+	//},
 ];
 
 //Resultatknapp
@@ -49,94 +213,167 @@ let resultHeader = document.createElement("h3");
 
 let darkModeBtn = document.querySelector("#darkMode")
 
+let container = document.querySelector("#questionContainer");
+
 darkModeBtn.addEventListener("click", () => {
-	document.body.classList.toggle("dark-mode");
+		document.body.classList.toggle("dark-mode");
 });
-
-function displayQuestion (arr) {
-    //Skapa textfråga+radiobutton*2+label*2 för varje fråga:
-    arr.forEach((obj, index)  => {
-
-		//!OBS! Alla radiobutton grupperingar indexeras vid noll. så fråga 1 = Q0
-
-		//Fråga
-		let question = document.createElement("h4");
-		question.innerText = obj.question; 		//!ALT: ??skapar helt ny HTML-tagg: <h2> Det här är en ny h2 </h2>
-
-		//Radiobutton - Sant
-        let radiobuttonTrue = document.createElement("input");
-        radiobuttonTrue.type = "radio";
-        radiobuttonTrue.name = "Q" + index; 		
-        radiobuttonTrue.id = "trueQ" + index;
-        radiobuttonTrue.value = true;
-
-		//Label - Sant
-        let labelTrue = document.createElement("label")
-        labelTrue.innerText = "Sant";
-
-		//Radiobutton - Falskt
-        let radiobuttonFalse = document.createElement("input");
-        radiobuttonFalse.type = "radio";
-        radiobuttonFalse.name = "Q" + index; 		//!Bör bli 
-        radiobuttonFalse.id = "falseQ" + index;
-        radiobuttonFalse.value = false;
-
-		// console.log("True:", radiobuttonTrue.name)
-		// console.log("False:", radiobuttonFalse.name)
-
-		//Label - Falskt
-        let labelFalse = document.createElement("label")
-        labelFalse.innerText = "Falskt";
-	 
-		//! Bör ändras - få in efter varje label ovan (innerHTML?)?
-		let newRowOne = document.createElement("br");
-		let newRowTwo = document.createElement("br");
-
-		let container = document.querySelector("#questionContainer");
-		container.append(question, radiobuttonTrue, labelTrue, newRowOne, radiobuttonFalse, labelFalse, newRowTwo);
-    });
-};
-
-displayQuestion(arrayOfQuestions);
+	
 
 resultBtn.addEventListener("click", () => {
-
-	getResult(arrayOfQuestions);
+    //! Alert du har inte svarat på alla frågor
+    getResult(arrayOfQuestions);
 });
 
+function displayQuestions (arr) {
+	arr.forEach((obj, index) => {
+        let question = document.createElement("h4");
+		question.innerText = obj.question;
+        // console.log(obj.question)
+        container.append(question);
+		obj.alternatives.forEach((alt, index2) => {           //!ta bort index2 ????
+            if (obj.type === "radiobutton") {
+                let radiobutton = document.createElement("input");
+                radiobutton.type = "radio";
+                radiobutton.name = "R" + index; 		
+                radiobutton.id = "R" + index + index2;
+                radiobutton.value = alt.correct;
+                //console.log(alt.correct);
+                //console.log(obj.alternatives[index])
+    
+                //Label
+                let label = document.createElement("label")
+                label.for = "R" + index + index2;
+                label.innerText = alt.answer;
+                //!label for funkar ej, ingen koppling mellan radioK + label-text
+                // console.log(radiobutton.id)
+                // console.log(label.for);
+                // console.log(radiobutton.value)
+                container.appendChild(radiobutton)
+				container.appendChild(label)
+
+            } else {
+                let checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.name = "C" + index;
+                checkbox.id = "C" + index + index2;
+                checkbox.value = alt.correct;
+
+                let label = document.createElement("label")
+                label.for = "C" + index + index2;
+                label.innerText = alt.answer;
+                container.append(checkbox, label)
+            }
+		});
+	});    
+}
+
+displayQuestions(arrayOfQuestions);
+
 function getResult (arr) {
-	//Rensar tidgare resultat
-	resultHeader.innerText = "";
-
-	//! Fixa krav måsta svarat på alla frågor --> annars ALERT
-
-	//Hämtar alla icheckade radiobuttons value
-	let checkedAnswerValue = Array.from(document.querySelectorAll("input[type='radio']:checked")).map(element => element.value);
- 
+//--------------------------Hämtar alla icheckade radiobuttons value-----------------
+	let radiobuttonsValue = Array.from(document.querySelectorAll("input[type='radio']:checked")).map(element => element.value);
+    
+    console.log(radiobuttonsValue);
+    //! alla värden ovan blir till strängar )-:< ????map????)
 	//Räknare till score-keeping
 	let score = 0;
 
-	//Räknar resultat:
-	arr.forEach((obj, index) => {
-		let a = index;					//!Är detta bästa lösnignen????? NJAAOO
-		if (checkedAnswerValue[a] === obj.answer) {			//!OBS båda måste vara strängar - kolla upp... map metoden ovan ställer till det?
-			score++;
-		}
-		return score;
-	});
+    radiobuttonsValue.forEach((value) => {
+        if (value === "true") {
+            score++
+			console.log(("[type='radio']:checked").parentElement);}
+			// value.parentElement.style.color = "green"; 
+        // } else {
+		// 	value.parentElement.style.color = "red";
+		// }
+        console.log(score);
+        return score;
+    })
 
-	//Printar resultat: 
-	if (score > 7.5 ) {
-		resultHeader.innerText = `Mycket väl godkänd: Du fick ${score} av 10 rätt.`;
+	// let radiobuttonsValue = (document.querySelectorAll("input[type='radio']:checked"));
+    
+    // console.log(radiobuttonsValue);
+    // //! alla värden ovan blir till strängar )-:< ????map????)
+	// //Räknare till score-keeping
+	// let score = 0;
+
+    // radiobuttonsValue.forEach((answer) => {
+    //     if (answer.value === "true") {
+	// 		console.log(answer.value);
+    //         score++;
+	// 		answer.parentElement.style.color = "green";
+    //     } else {
+	// 		answer.parentElement.style.color = "red";
+	// 	}
+    //     console.log(score);
+    //     return score;
+    // })
+
+//--------------------------Hämtar alla icheckade checkboxes value-----------------
+    // let checkboxes = document.querySelectorAll("[type='checkbox']:checked");
+    // let arrAnswers = [];
+    // console.log(checkboxes);
+
+    // checkboxes.forEach((item) => {
+    //     question.alternatives.forEach((alt, index2) => {           //!ta bort index2 ????
+    //         if (alt.correct === "true")  {
+    //             arrAnswers.push(alt.correct.value)
+    //         };
+
+
+    //     });
+    // });
+    // console.log(arrAnswers)
+
+
+
+    // let checkboxesValue = Array.from(document.querySelectorAll("input[type='checkbox']:checked")).map(element => element.value);
+
+    // console.log(checkboxesValue);
+
+    //! if(checkboxes[i].value == "wrong" && checkboxes[i].checked == true) {
+    // !    right = false;
+    // !  }
+
+
+
+
+
+    if (score > 7.5 ) {
+		resultHeader.innerText = `Mycket väl godkänd: Du fick ${score} av ${arrayOfQuestions.length} rätt.`;
 		resultHeader.style.color = "green";
 	} else if (score >= 5) {
-		resultHeader.innerText = `Godkänd: Du fick ${score} av 10 rätt.`;
+		resultHeader.innerText = `Godkänd: Du fick ${score} av ${arrayOfQuestions.length} rätt.`;
 		resultHeader.style.color = "orange";
 	} else {
-		resultHeader.innerText = `Underkänd: Du fick ${score} av 10 rätt.`;
+		resultHeader.innerText = `Underkänd: Du fick ${score} av ${arrayOfQuestions.length} rätt.`;
 		resultHeader.style.color = "red";
 	}
 	document.querySelector("#resultContainer").append(resultHeader);
+
 };
 
 
+
+
+ // arr.forEach((obj, index) => {
+    //     obj.alternatives.forEach((alt, index2) => {
+    //         // console.log(alt.correct) //Booleaner
+    //         // console.log(checkedAnswerValue[index]); //Strängar
+    //         // console.log(index);
+    //         if (alt.correct) {
+    //             score++;
+    //         }
+    //         console.log(score);
+    //         return score;
+    
+
+	// //Räknar resultat:
+	// arr.forEach((obj, index) => {
+	// 	let a = index;					//!Är detta bästa lösnignen????? NJAAOO
+	// 	if (checkedAnswerValue[a] === obj.answer) {			//!OBS båda måste vara strängar - kolla upp... map metoden ovan ställer till det?
+	// 		score++;
+	// 	}
+	// 	return score;
+	// });
