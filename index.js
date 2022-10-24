@@ -6,7 +6,7 @@ let arrayOfQuestions = [
                 "Sant",
                 "Falskt",
         ],
-        correct: 0,
+        correct: 0,               //!todo: Byt till orginalssystemet
         type: "radiobutton",
     },
     {
@@ -79,18 +79,18 @@ let arrayOfQuestions = [
         correct: 2,
         type: "radiobutton",
     },
-    {
-        q: "Fråga 13:",
-        alt: 
-        [
-            "13aaa",
-            "13bbb",
-            "13ccc",
-            "13ddd",
-        ],
-        correct: 1,
-        type: "radiobutton",
-    },
+    // {
+    //     q: "Fråga 13:",
+    //     alt: 
+    //     [
+    //         "13aaa",
+    //         "13bbb",
+    //         "13ccc",
+    //         "13ddd",
+    //     ],
+    //     correct: 1,
+    //     type: "radiobutton",
+    // },
     {
         q: "Fråga 14:",
         alt: 
@@ -143,6 +143,31 @@ let arrayOfQuestions = [
         // ],          //! Måste fix flervals alt - dum tanke: kan man kolla not correct?
         type: "checkbox",
     },
+    {
+      q: "Fråga 16:",
+      alt: 
+      [
+         {
+            answer: "16aaa", correct: true,
+          },
+          {
+            answer: "16bbb", correct: true,
+          },
+          {
+            answer: "16ccc", correct: true,
+          },
+          {
+            answer: "16ddd", correct: false,
+          },
+      ],
+      // correct:
+      // [
+      //   0,
+      //   2,
+      //   3,
+      // ],          //! Måste fix flervals alt - dum tanke: kan man kolla not correct?
+      type: "checkbox",
+  },
 ];
 // console.log(arrayOfQuestions.length);
 
@@ -160,8 +185,14 @@ let darkModeBtn = document.querySelector("#darkMode")
     //Fråge-div:
 let container = document.querySelector("#questionContainer");
 
+
 darkModeBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
+
+  // if (document.body.classList("dark-mode")) {
+  // } else {
+  //   document.body.classList.toggle("dark-mode");
+  // };
   //! Toggla även knapparna?
   //! Ändra text vid toggel
 });
@@ -199,9 +230,9 @@ function displayQuestions(arr) {
       question.alt.forEach((answer2, altIndex2) => {
         // console.log(question.correct);
         // console.log(answer2.answer);
-
+         //!Kan jag styla färgen här uppe på labels om värde/true, false + icheckad sen?
         alternativeStr += `
-        <label>
+        <label>                
           <input type="checkbox" 
           name="C${index}" 
 					class="C${index}"
@@ -246,58 +277,158 @@ displayQuestions(arrayOfQuestions);
 resultBtn.addEventListener("click", () => {
 
   getResult(arrayOfQuestions);
+
+  
+  // alertAnswerAllQuestions(arrayOfQuestions)
+
+
   //todo: Alert du har inte svarat på alla frågor
   // if (checkedRadiobuttons.length < )
-
 });
 
 function getResult (arr) {
 //----------------------------------Radiobuttons resultat-----------------------------------
   let checkedRadiobuttons = document.querySelectorAll("input[type=radio]:checked");
 	//! hämta valuet direkt?
-  console.log(checkedRadiobuttons);
+  // console.log(checkedRadiobuttons);
 
   //Nollar färgen - finns säkert smidigare sätt att göra på...
-  //todo:! Problem, blir ej vit text om darkmode är påslaget inann man klickar resultat. 
-  document.querySelectorAll("label").forEach((label) => {
-    label.style.color = "black";
-  })
 
-  let radioScore = 0;
+  //todo:! Problem, blir ej vit text om darkmode är påslaget inann man klickar resultat.
+
+  document.querySelectorAll("label").forEach((label) => {
+    // label.style.color = "black";
+  });
+
+  let score = 0;
+
+
   checkedRadiobuttons.forEach((radio) => {
-    if (radio.value === "true") {
-      radioScore++
+    console.log(radio.checked);
+
+    if (radio.value === "true" && radio.checked) {
+      score++
       radio.parentElement.style.color = "green";
-    } else {
+    } else if (radio.value === "false" && radio.checked) {
       radio.parentElement.style.color = "red";
     };
-    // console.log(radioScore);
-    return radioScore;
+    // console.log(score);
+    return score;
   });
-	console.log("Radiobuttons slutgiltig poäng: " + radioScore)
+	// console.log("Radiobuttons slutgiltig poäng: " + score)
+
+
+
+
 //--------------------------------------Checkboxes resultat:-----------------------------------
 //!----------------------------------------AAAARGHGRGHGH---------------------------------------
-
-	let arrOfCorrectAnswers = [];
-
   arr.forEach((question, index) => {
-		if (question.type === "checkbox") { //! ta kanske bort sen, jobbigt utan console.log annars dock. 
-			let checkedCheckboxesValue = Array.from(document.querySelectorAll(`input[type='checkbox'][name=C${CSS.escape(index)}]:checked`)).map(element => element.value);
-			console.log(checkedCheckboxesValue);
-			
-			question.alt.filter((key) => {
+    let facit = [];
+		if (question.type === "checkbox") {       //! ta kanske bort sen, jobbigt utan console.log annars dock. 
+			let checkedCheckboxes = document.querySelectorAll(`input[type='checkbox'][name=C${CSS.escape(index)}]:checked`);
+			// console.log(checkedCheckboxes);
+
+      let checkedCheckboxesValue = [];
+
+      //Färgar checkbox-svarsalternativen - rätt/fel:
+      checkedCheckboxes.forEach((box) => {
+        checkedCheckboxesValue.push(box.value);
+        // console.log(box.value);
+        if (box.value === "true") {
+          box.parentElement.style.color = "green";
+        } else {
+          box.parentElement.style.color = "red";
+        }
+      })
+
+
+			question.alt.forEach((key) => {
+        // console.log(question);
+        // console.log(key);
 				if (key.correct) {
-					arrOfCorrectAnswers.push(key.correct);
+					facit.push(key.correct);
 				};
-				console.log("arrCorrectAsnw: " + arrOfCorrectAnswers);
-				if (checkedCheckboxesValue.every((val, idx) => val === arrOfCorrectAnswers[idx])) {
-					return radioScore++;
-				};
-		});
+		  });
+      if (facit.length !== checkedCheckboxesValue.length) {
+        return false;
+      } else if (checkedCheckboxesValue.every((val) => facit.toString().includes(val))) {
+        score++;
+      }
 		}	
-		console.log("Poäng innkls. checkbox: " + radioScore)
 	});
 
+  if (score > 0.75 * arrayOfQuestions.length) {
+		resultHeader.innerText = `Mycket väl godkänd: Du fick ${score} av ${arrayOfQuestions.length} rätt.`;
+		resultHeader.style.color = "green";
+	} else if (score >= 0.5 * arrayOfQuestions.length) {
+		resultHeader.innerText = `Godkänd: Du fick ${score} av ${arrayOfQuestions.length} rätt.`;
+		resultHeader.style.color = "orange";
+	} else {
+		resultHeader.innerText = `Underkänd: Du fick ${score} av ${arrayOfQuestions.length} rätt.`;
+		resultHeader.style.color = "red";
+	}
+	document.querySelector("#resultContainer").append(resultHeader);
+
+  alertAnswerAllQuestions(arr);
+
+  console.log("Poäng innkls. checkbox: " + score)
+  return score;
+
+};
+
+// function alertAnswerAllQuestions(arr) {
+//   let q = 0;
+//     if (checkedCheckboxes.length >= 1) {
+//       q++;
+//     }
+//     console.log(q);
+
+//   console.log("antal checks: " + q);
+//   if (q < arr.length) {
+//     alert ("Please answer all questions!")
+//   };
+
+//   // let checkedQuestions = document.querySelectorAll(`input[name=C${CSS.escape(index)}]:checked`);
+//   // console.log(checkedQuestions);
+// };
+
+
+
+
+
+
+
+//!----------------------------------Om radiobuttons har true, false values se nedan:)-----------------------------------
+// let radiobuttonsValue = Array.from(document.querySelectorAll("input[type='radio']:checked")).map(element => element.value);
+    
+  // console.log(radiobuttonsValue);
+  // //! alla värden ovan blir till strängar )-:< ????map????)
+	// //Räknare till score-keeping
+	// let score = 0;
+  //   radiobuttonsValue.forEach((value) => {
+  //       if (value === "true") {
+  //           score++
+  //       }
+  //       console.log(score);
+  //       return score;
+  //   })
+
+
+  // "Checkede boxars value: "
+		// if (facit.toString() === checkedCheckboxesValue.toString()) {
+        //   radioScore++;
+        //   console.log("checkboxP per loop: " + radioScore)
+        //   //!Måste breaka funktionen!!!
+				// };
+//   question.alt.filter((key) => {
+//     if (key.correct) {
+//       arrOfCorrectAnswers.push(key.correct);
+//     };
+//     console.log("arrCorrectAsnw: " + arrOfCorrectAnswers);
+//     if (checkedCheckboxesValue.every((val, idx) => val === arrOfCorrectAnswers[idx])) {
+//       return radioScore++;
+//     };
+// });
 
 			//!Spara ifall filter blir kaos
 			// question.alt.forEach((key) => {
@@ -336,24 +467,120 @@ function getResult (arr) {
 
 //     // console.log(checkboxesValue);
 
-//     //! if(checkboxes[i].value == "wrong" && checkboxes[i].checked == true) {
-//     // !    right = false;
-//     // !  }
 
-//! Vill jag ha, maxpoäng osv, array längd???
+
+
+//__________Fullt fungerande kod (-) blocket med loop genom chekcade boxars value
+
+// resultBtn.addEventListener("click", () => {
+
+//   getResult(arrayOfQuestions);
+//   //todo: Alert du har inte svarat på alla frågor
+//   // if (checkedRadiobuttons.length < )
+// });
+
+// function getResult (arr) {
+// //----------------------------------Radiobuttons resultat-----------------------------------
+//   let checkedRadiobuttons = document.querySelectorAll("input[type=radio]:checked");
+// 	//! hämta valuet direkt?
+//   console.log(checkedRadiobuttons);
+
+//   //Nollar färgen - finns säkert smidigare sätt att göra på...
+//   //todo:! Problem, blir ej vit text om darkmode är påslaget inann man klickar resultat. 
+//   document.querySelectorAll("label").forEach((label) => {
+//     label.style.color = "black";
+//   });
+
+//   let score = 0;
+
+
+//   checkedRadiobuttons.forEach((radio) => {
+//     if (radio.value === "true") {
+//       score++
+//       radio.parentElement.style.color = "green";
+//     } else {
+//       radio.parentElement.style.color = "red";
+//     };
+//     // console.log(score);
+//     return score;
+//   });
+// 	console.log("Radiobuttons slutgiltig poäng: " + score)
+// //--------------------------------------Checkboxes resultat:-----------------------------------
+// //!----------------------------------------AAAARGHGRGHGH---------------------------------------
+//   arr.forEach((question, index) => {
+//     let facit = [];
+// 		if (question.type === "checkbox") {       //! ta kanske bort sen, jobbigt utan console.log annars dock. 
+// 			let checkedCheckboxesValue = Array.from(document.querySelectorAll(`input[type='checkbox'][name=C${CSS.escape(index)}]:checked`)).map(element => element.value);
+
+//       //Färgar svarsalternativen - rätt/fel:
+//       checkedCheckboxesValue.forEach((box) => {
+//         console.log(box);
+//         if (box === "true") {
+//           box.parentElement.style.color = "green";
+//         }
+
+
+    
+//       })
+
+
+// 			// console.log(checkedCheckboxesValue);
+// 			question.alt.forEach((key) => {
+//         // console.log(question);
+//         console.log(key);
+// 				if (key.correct) {
+// 					facit.push(key.correct);
+// 				};
+// 		  });
+//       if (facit.length !== checkedCheckboxesValue.length) {
+//         return false;
+//       } else if (checkedCheckboxesValue.every((val) => facit.toString().includes(val))) {
+//         score++;
+//       }
+// 		}	
+// 	});
+
+  
+
+
+//   if (score > 0.75 * arrayOfQuestions.length) {
+// 		resultHeader.innerText = `Mycket väl godkänd: Du fick ${score} av ${arrayOfQuestions.length} rätt.`;
+// 		resultHeader.style.color = "green";
+// 	} else if (score >= 0.5 * arrayOfQuestions.length) {
+// 		resultHeader.innerText = `Godkänd: Du fick ${score} av ${arrayOfQuestions.length} rätt.`;
+// 		resultHeader.style.color = "orange";
+// 	} else {
+// 		resultHeader.innerText = `Underkänd: Du fick ${score} av ${arrayOfQuestions.length} rätt.`;
+// 		resultHeader.style.color = "red";
+// 	}
+// 	document.querySelector("#resultContainer").append(resultHeader);
+
+//   console.log("Poäng innkls. checkbox: " + score)
+//   return score;
+
+// //     //! if(checkboxes[i].value == "wrong" && checkboxes[i].checked == true) 
+
+// //! Vill jag ha, maxpoäng osv, array längd???
+// //--------------------------------------Rendering av resultat:-----------------------------------
+
+ 
+
+//   //todo: Färga alternativen + ev. frågorna man fick rätt och fel:
+//   // arr.forEach((question, index) => {
+//   //   question.alt.forEach((answer, altIndex) => {
+//   //     if (question.type === "radiobutton" && question.correct === altIndex) {
+//   //       console.log(answer);
+//   //       answer.style.color = "green";
+//   //     };
+
+//   //   });
+//   // });
+// };
+
+
 //--------------------------------------Rendering av resultat:-----------------------------------
 
-  if (radioScore > 0.75 * arrayOfQuestions.length) {
-		resultHeader.innerText = `Mycket väl godkänd: Du fick ${radioScore} av ${arrayOfQuestions.length} rätt.`;
-		resultHeader.style.color = "green";
-	} else if (radioScore >= 0,5 * arrayOfQuestions.length) {
-		resultHeader.innerText = `Godkänd: Du fick ${radioScore} av ${arrayOfQuestions.length} rätt.`;
-		resultHeader.style.color = "orange";
-	} else {
-		resultHeader.innerText = `Underkänd: Du fick ${radioScore} av ${arrayOfQuestions.length} rätt.`;
-		resultHeader.style.color = "red";
-	}
-	document.querySelector("#resultContainer").append(resultHeader);
+ 
 
   //todo: Färga alternativen + ev. frågorna man fick rätt och fel:
   // arr.forEach((question, index) => {
@@ -365,26 +592,3 @@ function getResult (arr) {
 
   //   });
   // });
-};
-
-
-
-
-
-
-
-
-//!----------------------------------Om radiobuttons har true, false values se nedan:)-----------------------------------
-// let radiobuttonsValue = Array.from(document.querySelectorAll("input[type='radio']:checked")).map(element => element.value);
-    
-  // console.log(radiobuttonsValue);
-  // //! alla värden ovan blir till strängar )-:< ????map????)
-	// //Räknare till score-keeping
-	// let score = 0;
-  //   radiobuttonsValue.forEach((value) => {
-  //       if (value === "true") {
-  //           score++
-  //       }
-  //       console.log(score);
-  //       return score;
-  //   })
