@@ -1,594 +1,405 @@
 let arrayOfQuestions = [
-    {
-        q: "Fråga 1:",
-        alt: 
-        [
-                "Sant",
-                "Falskt",
-        ],
-        correct: 0,               //!todo: Byt till orginalssystemet
-        type: "radiobutton",
-    },
-    {
-        q: "Jorden är 20 år gammal",
-        alt: 
-        [
-            "Sant",
-            "Falskt",
-        ],
-        correct: 0,
-        type: "radiobutton",
-    },
-    {
-        q: "Fråga 8:",
-        alt: 
-        [
-            "8aaa",
-            "8bbb",
-            "8ccc",
-            "8ddd",
-        ],
-        correct: 2,
-        type: "radiobutton",
-    },
-    {
-        q: "Fråga 9:",
-        alt: 
-        [
-            "9aaa",
-            "9bbb",
-            "9ccc",
-            "9ddd",
-        ],
-        correct: 1,
-        type: "radiobutton",
-    },
-    {
-        q: "Fråga 10:",
-        alt: 
-        [
-            "10aaa",
-            "10bbb",
-            "10ccc",
-            "10ddd",
-        ],
-        correct: 1,
-        type: "radiobutton",
-    },
-    {
-        q: "Fråga 11:",
-        alt: 
-        [
-            "11aaa",
-            "11bbb",
-            "11ccc",
-            "11ddd",
-        ],
-        correct: 3,
-        type: "radiobutton",
-    },
-    {
-        q: "Fråga 12:",
-        alt: 
-        [
-            "12aaa",
-            "12bbb",
-            "12ccc",
-            "12ddd",
-        ],
-        correct: 2,
-        type: "radiobutton",
-    },
-    // {
-    //     q: "Fråga 13:",
-    //     alt: 
-    //     [
-    //         "13aaa",
-    //         "13bbb",
-    //         "13ccc",
-    //         "13ddd",
-    //     ],
-    //     correct: 1,
-    //     type: "radiobutton",
-    // },
-    {
-        q: "Fråga 14:",
-        alt: 
-        [
-          {
-            answer: "14aaa", correct: false,
-          },
-          {
-            answer: "14bbb", correct: true,
-          },
-          {
-            answer: "14ccc", correct: true,
-          },
-          {
-            answer: "14ddd", correct: false,
-          },
-        ],
-        // correct:
-        // [
-        //   0,
-        //   1,
-        //   3,
-        // ],        
-        
-        //! Måste fixa, flervalsalt.
-        type: "checkbox",
-    },
-    {
-        q: "Fråga 15:",
-        alt: 
-        [
-           {
-							answer: "15aaa", correct: true,
-						},
-						{
-							answer: "15bbb", correct: false,
-						},
-						{
-							answer: "15ccc", correct: true,
-						},
-						{
-							answer: "15ddd", correct: false,
-						},
-        ],
-        // correct:
-        // [
-        //   0,
-        //   2,
-        //   3,
-        // ],          //! Måste fix flervals alt - dum tanke: kan man kolla not correct?
-        type: "checkbox",
-    },
-    {
-      q: "Fråga 16:",
+  {
+      q: "The divorce of Lady Diana and Prince Charles was the first divorce in the British Royal family.",
+      alt: 
+      [ 
+        {
+          answer: "True", correct: false,
+        },
+        {
+          answer: "False", correct: true,
+        },
+      ],
+      type: "radiobutton",
+  },
+  {
+      q: "Of which Prince has a nude picture been published?",
       alt: 
       [
-         {
-            answer: "16aaa", correct: true,
-          },
-          {
-            answer: "16bbb", correct: true,
-          },
-          {
-            answer: "16ccc", correct: true,
-          },
-          {
-            answer: "16ddd", correct: false,
-          },
+        {
+          answer: "Prince William", correct: false,
+        },
+        {
+          answer: "Prince Harry", correct: true,
+        },
+        {
+          answer: "Prince Andrew", correct: false,
+        },
+        {
+          answer: "Prince Edward", correct: false,
+        },
       ],
-      // correct:
-      // [
-      //   0,
-      //   2,
-      //   3,
-      // ],          //! Måste fix flervals alt - dum tanke: kan man kolla not correct?
+      type: "radiobutton",
+  },
+  {
+      q: "What did Prince Charles answer when asked if he was in love with his new fiancee Diana?",
+      alt: 
+      [
+        {
+          answer: "Why wouldn't I be", correct: false,
+        },
+        {
+          answer: "No, we just did it for funsies", correct: false,
+        },
+        {
+          answer: "Well, yes, if one can ever know for sure", correct: false,
+        },
+        {
+          answer: "Whatever 'in love' means", correct: true,
+        },
+         
+      ],
+      type: "radiobutton",
+  },
+  {
+      q: "With which of the following excuse(s) did Prince Andrew refute Virginia Giuffrethe's sexual accusations?",
+      alt: 
+      [
+        {
+          answer: "He's unable to sweat", correct: true,
+        },
+        {
+          answer: "He's impotent", correct: false,
+        },
+        {
+          answer: "He was having pizza with his daughter at the time", correct: true,
+        },
+        {
+          answer: "He doesn't drink", correct: true,
+        },
+      ],
       type: "checkbox",
   },
+
+  {
+    q: "Which of below royal(s) have had public affairs?",
+    alt: 
+    [
+       {
+          answer: "Prince Charles", correct: true,
+        },
+        {
+          answer: "Princess Diana", correct: true,
+        },
+        {
+          answer: "Queen Elizabeth", correct: false,
+        },
+        {
+          answer: "Princess Margaret", correct: true,
+        },
+    ],
+    type: "checkbox",
+},
+{
+  q: "What upsets Prince Philip during his 2017 visit to Mayflower Primary School?",
+  alt: 
+  [
+    {
+      answer: "The child's handwriting", correct: true,
+    },
+    {
+      answer: "The motif of the drawing", correct: false,
+    },
+    {
+      answer: "His own breath", correct: false,
+    },
+    {
+      answer: "The teacher’s comment", correct: false,
+    },
+  ],
+  type: "radiobutton",
+  image: true,              
+  url: "https://cdn.images.express.co.uk/img/dynamic/106/590x/Prince-Philip-snub-Duke-s-fiery-reaction-as-he-humiliated-teacher-over-handwriting-1354471.jpg?r=1604154170007"
+},
+{
+  q: "Which Royal was caught dressed as a nazi while partying?",
+  alt: 
+  [
+    {
+      answer: "Prince Philip", correct: false,
+    },
+    {
+      answer: "Prince Andrew", correct: false,
+    },
+    {
+      answer: "Prince William", correct: false,
+    },
+    {
+      answer: "Prince Harry", correct: true,
+    },
+  ],
+  type: "radiobutton",
+},
+{
+  q: "Prince Philip and Queen Elizabeth were second cousins.",
+  alt: 
+  [
+    {
+      answer: "True", correct: false,
+    },
+    {
+      answer: "False", correct: true,
+    },
+  ],
+  type: "radiobutton",
+},
+{
+  q: "Which Royal had their affair exposed when caught having their toes licked by their lover?",
+  alt: 
+  [
+    {
+      answer: "Princess Margaret", correct: false,
+    },
+    {
+      answer: "Prince Charles", correct: false,
+    },
+    {
+      answer: "Duchess Sarah Ferguson", correct: true,
+    },
+    {
+      answer: "Prince Andrew", correct: false,
+    },
+  ],
+  type: "radiobutton",
+},
+{
+  q: "Why couldn't Princess Margaret and Peter Townsend marry?",
+  alt: 
+  [
+     {
+        answer: "He was working class", correct: false,
+      },
+      {
+        answer: "He left the army dishonorably", correct: false,
+      },
+      {
+        answer: "He was not christian", correct: false,
+      },
+      {
+        answer: "He was divorced", correct: true,
+      },
+  ],
+  type: "radiobutton",
+},
 ];
-// console.log(arrayOfQuestions.length);
+console.log(arrayOfQuestions.length);
 
-//Deklarationer:
-
-    //Resultatknapp:
+//Resultatknapp:
 let resultBtn = document.querySelector("#resultButton")
 
-    //Header: resultat
+//Restart-knapp:
+let restartBtn = document.createElement("button");
+restartBtn.innerText = "Try again";
+
+//Header: resultat
 let resultHeader = document.createElement("h3");
 
-    //Mode-knapp:
+//Mode-knapp:
 let darkModeBtn = document.querySelector("#darkMode")
 
-    //Fråge-div:
+//Fråge-div:
 let container = document.querySelector("#questionContainer");
 
-
-darkModeBtn.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-
-  // if (document.body.classList("dark-mode")) {
-  // } else {
-  //   document.body.classList.toggle("dark-mode");
-  // };
-  //! Toggla även knapparna?
-  //! Ändra text vid toggel
-});
-
+//--------------------------------------Skapar frågorna:-----------------------------------
 function displayQuestions(arr) {
-  // loopa igenom frågorna
+  
+
+  // Loopar fråge-arrayen och genererar HTML-elemnt per fråga: 
+
   let htmlString = "";                //! Fattar inte egentligen
 
-  //! Alert du har inte svarat på alla frågor
-
-  //Skapa html-element för varje fråga
   arr.forEach((question, index) => {
+
     let alternativeStr = "";
-
+    
+    //-----------------------------------------Bild:---------------------------------------
+    if (question.image) {
+      alternativeStr += `<img src=\"${question.url}" + "\" width=\"300\" height=\"200\"><br>`;
+    }
+    //--------------------------------------Radiobuttons:-----------------------------------
+    
     if (question.type === "radiobutton") {
-      //--------------------------------------Radiobuttons:-----------------------------------
-      // console.log("Fråge-index: " + index);
-      // console.log(question.q);
-      // console.log("Korrekt svar index: " + question.correct);
-      // console.log("typ: " + question.type);
-      // console.log("Arrayen med alternativ: " + question.alt);
-
-      question.alt.forEach((answer, altIndex) => {
+      question.alt.forEach((radioAnswer) => {
         alternativeStr += `
-        <label>
-          <input type="radio" name="R${index}" value="${question.correct === altIndex}">
-          ${answer}
-        </label>
-        `
-        // console.log(answer);
-        // console.log("R"+ index);
+        <label><input type="radio" name="r${index}" value="${radioAnswer.correct}">${radioAnswer.answer}<br></label> `
       });
     } else {
       //--------------------------------------Checkboxes:-----------------------------------
-      question.alt.forEach((answer2, altIndex2) => {
-        // console.log(question.correct);
-        // console.log(answer2.answer);
-         //!Kan jag styla färgen här uppe på labels om värde/true, false + icheckad sen?
-        alternativeStr += `
-        <label>                
-          <input type="checkbox" 
-          name="C${index}" 
-					class="C${index}"
-          value="${answer2.correct}" 					//!Brandon - hur gör jag en korrekt loop, om jag vill matcha index av alt mot, question.correct: [1,2,3] tex?
-        ">
-          ${answer2.answer}
-        </label>
-        `
-        // console.log(answer);
-        // console.log("C"+ index);
-
-        //! Loopar till correct: [0,1,3]
-          // question.correct.forEach((correctAnsValue, index3) => {
-            //    if (correctAnsValue === altIndex2) { 
-            //    }
-            // })
-              // if (correctAnsValue === altIndex2) {
-              //   i++;
-              //   console.log(i);
-              // }
-              // console.log("altIndex2: " + altIndex2);
-              // console.log("Value: " + value);
-              // console.log(altIndex2);
-              // console.log(correctAnsValue === altIndex2);
-
-              // return (correctAnsValue === altIndex2);
+      question.alt.forEach((boxAnswer) => { 
+        //!Kan jag styla färgen här uppe på labels om värde/true, false + icheckad sen?
+        alternativeStr += 
+        `<label><input type="checkbox" name="c${index}" value="${boxAnswer.correct}">${boxAnswer.answer}<br></label> `
       });
     };
     //! Ta bort div / ta bort class bara? - användning?
-    htmlString += `
-    <div class="question" id="Q${index}">      
-      <h4>${question.q}</h4>
-      ${alternativeStr}
-    </div>`
-
+    htmlString += 
+    `<div class="question"><h4 id="q${index}">${question.q}</h4>${alternativeStr}</div>`
     container.innerHTML = htmlString;
   }); 
 };
 
+//--------------------------------------Initiering av generera frågorna funktion:-----------------------------------
 displayQuestions(arrayOfQuestions);
 
-resultBtn.addEventListener("click", () => {
-
-  getResult(arrayOfQuestions);
-
-  
-  // alertAnswerAllQuestions(arrayOfQuestions)
-
-
-  //todo: Alert du har inte svarat på alla frågor
-  // if (checkedRadiobuttons.length < )
-});
-
+//--------------------------------------Svarshanteringsfunktion:-----------------------------------
 function getResult (arr) {
-//----------------------------------Radiobuttons resultat-----------------------------------
-  let checkedRadiobuttons = document.querySelectorAll("input[type=radio]:checked");
-	//! hämta valuet direkt?
-  // console.log(checkedRadiobuttons);
 
-  //Nollar färgen - finns säkert smidigare sätt att göra på...
-
-  //todo:! Problem, blir ej vit text om darkmode är påslaget inann man klickar resultat.
-
-  document.querySelectorAll("label").forEach((label) => {
-    // label.style.color = "black";
-  });
-
+  // Poäng-variabel
   let score = 0;
 
 
-  checkedRadiobuttons.forEach((radio) => {
-    console.log(radio.checked);
+  //---------------------------------Radiobuttons resultat:-----------------------------------
 
-    if (radio.value === "true" && radio.checked) {
+  // Alla användarens icheckade radiobuttons
+  let checkedRadiobuttons = document.querySelectorAll("input[type=radio]:checked");
+
+  // Utvärderar om användarens svar är rätt/fel genom loop
+    // Ökar poängen därefter
+    // Färgar tillhörande label
+    // Retunerar poängen
+  checkedRadiobuttons.forEach((radio) => {
+    //!Nytt
+    console.log(radio);
+    let label = radio.parentElement;
+    console.log(label.previousElementSibling);
+    let h4 = label.parentElement.firstChild;
+    console.log(h4);
+    
+    if (radio.value === "true") {
       score++
-      radio.parentElement.style.color = "green";
-    } else if (radio.value === "false" && radio.checked) {
-      radio.parentElement.style.color = "red";
+      label.style.color = "green";
+      h4.style.color = "green"
+     
+      // h4.style.color = "green";
+    } else if (radio.value === "false") {
+      label = radio.parentElement;
+      label.style.color = "red";
+      h4.style.color = "red"
+
     };
-    // console.log(score);
     return score;
   });
-	// console.log("Radiobuttons slutgiltig poäng: " + score)
 
+  //--------------------------------------Checkboxar resultat🔫:-----------------------------------
+    // För varje fråga jämföra array med facit med användarens svar 
 
+  // Loopar igenom ursprungsarray
 
-
-//--------------------------------------Checkboxes resultat:-----------------------------------
-//!----------------------------------------AAAARGHGRGHGH---------------------------------------
   arr.forEach((question, index) => {
-    let facit = [];
-		if (question.type === "checkbox") {       //! ta kanske bort sen, jobbigt utan console.log annars dock. 
-			let checkedCheckboxes = document.querySelectorAll(`input[type='checkbox'][name=C${CSS.escape(index)}]:checked`);
-			// console.log(checkedCheckboxes);
 
+    h4 = document.querySelector(`h4[id=q${index}]`);
+    
+
+    if (question.type === "checkbox") {      
+      // För varje checkbox-fråga: skapa tom array för frågans facit
+      let facit = [];
+
+      // Sparar alla rätta svar(true-värden) frågan har i facit-array
+      question.alt.forEach((key) => {
+        if (key.correct) {
+          facit.push(key.correct);
+        };
+      });
+   
+      // Alla icheckade boxar för aktuell fråga
+      let checkedCheckboxes = document.querySelectorAll(`input[type='checkbox'][name=c${CSS.escape(index)}]:checked`);
+
+
+      // Tom array för icheckade boxars värde
       let checkedCheckboxesValue = [];
 
-      //Färgar checkbox-svarsalternativen - rätt/fel:
+      // Loopar användarens svar --> pushar in värdet i checkedCheckboxesValue-array
       checkedCheckboxes.forEach((box) => {
         checkedCheckboxesValue.push(box.value);
-        // console.log(box.value);
+        // Färgar icheckade-svarsalternativens label - rätt/fel:
         if (box.value === "true") {
           box.parentElement.style.color = "green";
-        } else {
+        } else if (box.value === "false") {
           box.parentElement.style.color = "red";
-        }
-      })
+        };
+      });
 
-
-			question.alt.forEach((key) => {
-        // console.log(question);
-        // console.log(key);
-				if (key.correct) {
-					facit.push(key.correct);
-				};
-		  });
+      // Om facit = användarens svar -> +1 poäng
       if (facit.length !== checkedCheckboxesValue.length) {
+        h4.style.color = "red";
         return false;
+
       } else if (checkedCheckboxesValue.every((val) => facit.toString().includes(val))) {
         score++;
-      }
-		}	
-	});
+        h4.style.color = "green";
+      };
 
+         
+
+    };
+
+
+     
+});
+
+  // Renderar slutgiltiga resultatet
   if (score > 0.75 * arrayOfQuestions.length) {
-		resultHeader.innerText = `Mycket väl godkänd: Du fick ${score} av ${arrayOfQuestions.length} rätt.`;
-		resultHeader.style.color = "green";
-	} else if (score >= 0.5 * arrayOfQuestions.length) {
-		resultHeader.innerText = `Godkänd: Du fick ${score} av ${arrayOfQuestions.length} rätt.`;
-		resultHeader.style.color = "orange";
-	} else {
-		resultHeader.innerText = `Underkänd: Du fick ${score} av ${arrayOfQuestions.length} rätt.`;
-		resultHeader.style.color = "red";
-	}
-	document.querySelector("#resultContainer").append(resultHeader);
+    resultHeader.innerText = `You got ${score} out of ${arrayOfQuestions.length} correct.`;
+    resultHeader.style.color = "green";
+  } else if (score >= 0.5 * arrayOfQuestions.length) {
+    resultHeader.innerText = `You got ${score} out of ${arrayOfQuestions.length} correct.`;
+    resultHeader.style.color = "orange";
+  } else {
+    resultHeader.innerText = `You got ${score} out of ${arrayOfQuestions.length} correct.`;
+    resultHeader.style.color = "red";
+  }
+  document.querySelector("#resultContainer").append(resultHeader);
 
-  alertAnswerAllQuestions(arr);
 
-  console.log("Poäng innkls. checkbox: " + score)
-  return score;
 
 };
 
-// function alertAnswerAllQuestions(arr) {
-//   let q = 0;
-//     if (checkedCheckboxes.length >= 1) {
-//       q++;
-//     }
-//     console.log(q);
+//--------------------------------------Darkmode funktion:-----------------------------------
+function toggleDarkMode() {
+  if (document.body.classList === "dark-mode") {
+    document.body.classList.toggle("light-mode")
+  } 
+  else {
+    document.body.classList.toggle("dark-mode");
+  };
+  //! Toggla även knapparna?
+  //! Ändra text vid toggel
+}
 
-//   console.log("antal checks: " + q);
-//   if (q < arr.length) {
-//     alert ("Please answer all questions!")
-//   };
+//--------------------------------------Darkmode-knapp:-----------------------------------
+darkModeBtn.addEventListener("click", () => {
+  //! Lägga in funktionen direkt här bara?
+toggleDarkMode();
+});
 
-//   // let checkedQuestions = document.querySelectorAll(`input[name=C${CSS.escape(index)}]:checked`);
-//   // console.log(checkedQuestions);
-// };
+//--------------------------------------Resultat-knapp:-----------------------------------
+resultBtn.addEventListener("click", () => {
 
+  //todo: Alert du har inte svarat på alla frågor
 
+  // //! Nytt
+  // arr.forEach((q) => {
+  //   let checkedCheckboxes = document.querySelectorAll(`input[type='checkbox'][name=c${CSS.escape(index)}]:checked`);
+  //   console.log(allInput);
 
-
-
-
-
-//!----------------------------------Om radiobuttons har true, false values se nedan:)-----------------------------------
-// let radiobuttonsValue = Array.from(document.querySelectorAll("input[type='radio']:checked")).map(element => element.value);
-    
-  // console.log(radiobuttonsValue);
-  // //! alla värden ovan blir till strängar )-:< ????map????)
-	// //Räknare till score-keeping
-	// let score = 0;
-  //   radiobuttonsValue.forEach((value) => {
-  //       if (value === "true") {
-  //           score++
-  //       }
-  //       console.log(score);
-  //       return score;
-  //   })
-
-
-  // "Checkede boxars value: "
-		// if (facit.toString() === checkedCheckboxesValue.toString()) {
-        //   radioScore++;
-        //   console.log("checkboxP per loop: " + radioScore)
-        //   //!Måste breaka funktionen!!!
-				// };
-//   question.alt.filter((key) => {
-//     if (key.correct) {
-//       arrOfCorrectAnswers.push(key.correct);
-//     };
-//     console.log("arrCorrectAsnw: " + arrOfCorrectAnswers);
-//     if (checkedCheckboxesValue.every((val, idx) => val === arrOfCorrectAnswers[idx])) {
-//       return radioScore++;
-//     };
-// });
-
-			//!Spara ifall filter blir kaos
-			// question.alt.forEach((key) => {
-			// 	if (key.correct) {
-			// 		arrOfCorrectAnswers.push(key.correct);
-			// 	}
-			// 	console.log(key.correct);
-			// 	// console.log(arrOfCorrectAnswers);
-			// });
-
-
-	
-
-// let index2 = index;
-		// console.log(index);
-			// let checkedCheckboxes = document.querySelectorAll("[name='C+index']");
-			// let checkedCheckboxes = document.querySelectorAll("input[type='checkbox'][name=' + CSS.escape(index) + ']:checked");
-	// let checkedCheckboxes = document.querySelectorAll('[name="((C)(${index}))"]');
-			// console.log(checkedCheckboxes);
-			
-
-			//  checkedCheckboxes.forEach((box) => {
-			//  	if (box.value === "true")  {
-			//  		box.parentElement.style.color = "green";
-			//  		console.log(box.parentElement);
-			//  	};
-			//  });
-
-	// 	}
-    
   // });
 
-  
+  // Kör svarshanteringsfunktionen: getResult
+  getResult(arrayOfQuestions);
 
-//     // let checkboxesValue = Array.from(document.querySelectorAll("input[type='checkbox']:checked")).map(element => element.value);
+  //Inaktiverar alla inputs(radiobuttons + checkboxes)
+  let allInputs = document.querySelectorAll("input");
+  allInputs.forEach((input) => {
+    input.disabled = true;
+  });
 
-//     // console.log(checkboxesValue);
+  //Ersätt resultat-knapp med omstart-knapp när resultatet genererats
+  document.querySelector("#quizToolsContainer").appendChild(restartBtn);
+  resultBtn.remove();
 
+});
 
-
-
-//__________Fullt fungerande kod (-) blocket med loop genom chekcade boxars value
-
-// resultBtn.addEventListener("click", () => {
-
-//   getResult(arrayOfQuestions);
-//   //todo: Alert du har inte svarat på alla frågor
-//   // if (checkedRadiobuttons.length < )
-// });
-
-// function getResult (arr) {
-// //----------------------------------Radiobuttons resultat-----------------------------------
-//   let checkedRadiobuttons = document.querySelectorAll("input[type=radio]:checked");
-// 	//! hämta valuet direkt?
-//   console.log(checkedRadiobuttons);
-
-//   //Nollar färgen - finns säkert smidigare sätt att göra på...
-//   //todo:! Problem, blir ej vit text om darkmode är påslaget inann man klickar resultat. 
-//   document.querySelectorAll("label").forEach((label) => {
-//     label.style.color = "black";
-//   });
-
-//   let score = 0;
-
-
-//   checkedRadiobuttons.forEach((radio) => {
-//     if (radio.value === "true") {
-//       score++
-//       radio.parentElement.style.color = "green";
-//     } else {
-//       radio.parentElement.style.color = "red";
-//     };
-//     // console.log(score);
-//     return score;
-//   });
-// 	console.log("Radiobuttons slutgiltig poäng: " + score)
-// //--------------------------------------Checkboxes resultat:-----------------------------------
-// //!----------------------------------------AAAARGHGRGHGH---------------------------------------
-//   arr.forEach((question, index) => {
-//     let facit = [];
-// 		if (question.type === "checkbox") {       //! ta kanske bort sen, jobbigt utan console.log annars dock. 
-// 			let checkedCheckboxesValue = Array.from(document.querySelectorAll(`input[type='checkbox'][name=C${CSS.escape(index)}]:checked`)).map(element => element.value);
-
-//       //Färgar svarsalternativen - rätt/fel:
-//       checkedCheckboxesValue.forEach((box) => {
-//         console.log(box);
-//         if (box === "true") {
-//           box.parentElement.style.color = "green";
-//         }
-
-
-    
-//       })
-
-
-// 			// console.log(checkedCheckboxesValue);
-// 			question.alt.forEach((key) => {
-//         // console.log(question);
-//         console.log(key);
-// 				if (key.correct) {
-// 					facit.push(key.correct);
-// 				};
-// 		  });
-//       if (facit.length !== checkedCheckboxesValue.length) {
-//         return false;
-//       } else if (checkedCheckboxesValue.every((val) => facit.toString().includes(val))) {
-//         score++;
-//       }
-// 		}	
-// 	});
-
-  
-
-
-//   if (score > 0.75 * arrayOfQuestions.length) {
-// 		resultHeader.innerText = `Mycket väl godkänd: Du fick ${score} av ${arrayOfQuestions.length} rätt.`;
-// 		resultHeader.style.color = "green";
-// 	} else if (score >= 0.5 * arrayOfQuestions.length) {
-// 		resultHeader.innerText = `Godkänd: Du fick ${score} av ${arrayOfQuestions.length} rätt.`;
-// 		resultHeader.style.color = "orange";
-// 	} else {
-// 		resultHeader.innerText = `Underkänd: Du fick ${score} av ${arrayOfQuestions.length} rätt.`;
-// 		resultHeader.style.color = "red";
-// 	}
-// 	document.querySelector("#resultContainer").append(resultHeader);
-
-//   console.log("Poäng innkls. checkbox: " + score)
-//   return score;
-
-// //     //! if(checkboxes[i].value == "wrong" && checkboxes[i].checked == true) 
-
-// //! Vill jag ha, maxpoäng osv, array längd???
-// //--------------------------------------Rendering av resultat:-----------------------------------
-
- 
-
-//   //todo: Färga alternativen + ev. frågorna man fick rätt och fel:
-//   // arr.forEach((question, index) => {
-//   //   question.alt.forEach((answer, altIndex) => {
-//   //     if (question.type === "radiobutton" && question.correct === altIndex) {
-//   //       console.log(answer);
-//   //       answer.style.color = "green";
-//   //     };
-
-//   //   });
-//   // });
-// };
-
-
-//--------------------------------------Rendering av resultat:-----------------------------------
-
- 
-
-  //todo: Färga alternativen + ev. frågorna man fick rätt och fel:
-  // arr.forEach((question, index) => {
-  //   question.alt.forEach((answer, altIndex) => {
-  //     if (question.type === "radiobutton" && question.correct === altIndex) {
-  //       console.log(answer);
-  //       answer.style.color = "green";
-  //     };
-
-  //   });
-  // });
+//--------------------------------------Omstart-knapp:-----------------------------------
+restartBtn.addEventListener("click", () => {
+location.reload();
+});
