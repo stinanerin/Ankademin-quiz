@@ -51,7 +51,7 @@ let arrayOfQuestions = [
       ],
       type: "radiobutton",
   },
-   {
+  {
     q: "Which of below royal(s) have had public affairs?",
     alt: 
     [
@@ -91,7 +91,7 @@ let arrayOfQuestions = [
         answer: "The child's handwriting", correct: true,
       },
       {
-        answer: "The motif of the drawing", correct: false,
+        answer: "The drawing", correct: false,
       },
       {
         answer: "His own breath", correct: false,
@@ -266,8 +266,8 @@ function getResult (arr) {
       let facit = [];
 
       // Loopar aktuell frågas objekt för svarsalternativ --> pushar in varje true-värde i facit-array: WTF-syntax 
-      question.alt.forEach((key) => {
-        return key.correct ? facit.push(key.correct): "";
+      question.alt.forEach((obj) => {
+        return obj.correct ? facit.push(obj.correct): "";
       });
    
       // Alla icheckade boxar för aktuell fråga
@@ -293,7 +293,7 @@ function getResult (arr) {
       }
     
     };
-});
+  });
   // Renderar slutgiltiga resultatet
   if (score > 0.75 * arrayOfQuestions.length) {
     resultHeader.innerText = `You got ${score} out of ${arrayOfQuestions.length} correct.`;
