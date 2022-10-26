@@ -182,9 +182,6 @@ let arrayOfQuestions = [
   },
 ];
 
-//!ta bort
-console.log(arrayOfQuestions.length);
-
 //Resultatknapp:
 let resultBtn = document.querySelector("#resultButton")
 //Restart-knapp:
@@ -227,8 +224,6 @@ function displayQuestions(arr) {
     container.innerHTML = htmlString;
   }); 
 };
-
-//--------------------------------------Initiering av generera frågorna funktion:-----------------------------------
 displayQuestions(arrayOfQuestions);
 
 //--------------------------------------Svarshanteringsfunktion:-----------------------------------
@@ -261,27 +256,22 @@ function getResult (arr) {
   });
 
 //--------------------------------------Checkboxar resultat🔫:-----------------------------------
-  // För varje fråga jämföra frågans facit(array) med användarens svar
+  // För varje fråga jämföra frågans facit med användarens svar
 
   // Loopar igenom fråge-array
   arr.forEach((question, index) => {
 
     if (question.type === "checkbox") {      
-      // För varje checkbox-fråga: skapa tom array för frågans facit
+      // För varje checkboxfråga: skapa tom array för frågans facit
       let facit = [];
 
-      // Sparar alla rätta svar(true-värden) frågan har i facit-array
+      // Loopar aktuell frågas objekt för svarsalternativ --> pushar in varje true-värde i facit-array: WTF-syntax 
       question.alt.forEach((key) => {
         return key.correct ? facit.push(key.correct): "";
-        // if (key.correct) {
-        //   facit.push(key.correct);
-        // };
       });
-      console.log("facti: " + facit);
    
       // Alla icheckade boxar för aktuell fråga
       let checkedCheckboxes = document.querySelectorAll(`input[type='checkbox'][name=c${CSS.escape(index)}]:checked`);
-      console.log(checkedCheckboxes);
 
       // Tom array för icheckade boxars värde
       let checkedCheckboxesValue = [];
@@ -289,15 +279,8 @@ function getResult (arr) {
       // Loopar användarens svar --> pushar in värdet i checkedCheckboxesValue-array
       checkedCheckboxes.forEach((box) => {
         checkedCheckboxesValue.push(box.value);
-        // Färgar icheckade-svarsalternativens label - rätt/fel: WTF-synatx
+        // Färgar icheckade-svarsalternativens label - rätt/fel: WTF-syntax
         return box.value === "true" ? box.parentElement.style.color = "green": box.parentElement.style.color = "red";
-        
-        //!Ta bort
-        // if (box.value === "true") {
-        //   box.parentElement.style.color = "green";
-        // } else if (box.value === "false") {
-        //   box.parentElement.style.color = "red";
-        // };
       });
 
       h4 = document.querySelector(`h4[id=q${index}]`);
