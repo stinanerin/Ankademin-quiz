@@ -10,13 +10,15 @@
 }
 
 body {
-  font-family: monospace;
+  font-family: Helvetica;
+  display: flex;
+  justify-content: center;
 }
 
 div {
-  padding: 15px;
+  padding: 15px 0;
 }
 
 .button {
-  font-family: monospace;
+  font-family: Helvetica;
 }
