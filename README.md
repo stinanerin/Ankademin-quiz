@@ -7,3 +7,5 @@ Upon completion, the user can click the "Result" button to see their final score
 After finishing the quiz, users can review their answers and see which questions they got correct or wrong. However, correct answers are only revealed if the user answered the question correctly.
 
 If a user leaves a question unanswered, the correct answer will not be revealed.
+
+> [View Quiz application](https://stormstina.github.io/Ankademin-quiz/)
